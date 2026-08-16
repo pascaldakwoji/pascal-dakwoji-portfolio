@@ -4362,54 +4362,73 @@ figcaption {
     grid-template-columns: 1fr;
   }
 }
-
 /* =========================================================
-   SAVORA INTERACTIVE PROTOTYPE — FINAL FRAME FIX
-   Forces every prototype screenshot, including Confirmation,
-   to use the exact same phone frame dimensions and black
-   border. This rule is intentionally placed last so it
-   overrides earlier Savora image rules.
+   SAVORA INTERACTIVE PROTOTYPE — DEFINITIVE SCREEN FRAME
+   Every Savora screenshot is a native 360 x 800 image.
+   The prototype frame is therefore fixed to exactly
+   360 x 800 CSS pixels. The black border is an inset
+   overlay so it never changes the image dimensions.
    ========================================================= */
 
 .savora-prototype-stage {
+  display: grid;
   align-items: center;
+  justify-items: center;
 }
 
 .savora-prototype-screen {
   display: block !important;
-  width: min(360px, 100%) !important;
+  position: relative !important;
+  width: 360px !important;
+  height: 800px !important;
+  min-width: 360px !important;
+  min-height: 800px !important;
   max-width: 360px !important;
-  height: auto !important;
-  aspect-ratio: 360 / 800 !important;
-  min-height: 0 !important;
-  padding: 10px !important;
+  max-height: 800px !important;
+  padding: 0 !important;
   margin: 0 !important;
-  border: 10px solid #050505 !important;
-  border-radius: 38px !important;
+  border: 0 !important;
+  border-radius: 36px !important;
   background: #050505 !important;
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42) !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
+  cursor: pointer;
+  box-shadow:
+    inset 0 0 0 10px #050505,
+    0 30px 90px rgba(0, 0, 0, 0.42) !important;
   appearance: none !important;
   -webkit-appearance: none !important;
 }
 
+.savora-prototype-screen::after {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none !important;
+  border: 10px solid #050505 !important;
+  border-radius: 36px !important;
+  box-sizing: border-box !important;
+}
+
 .savora-prototype-screen img {
   display: block !important;
-  width: 100% !important;
-  height: 100% !important;
+  width: 360px !important;
+  height: 800px !important;
+  min-width: 360px !important;
+  min-height: 800px !important;
   max-width: none !important;
-  min-width: 0 !important;
-  min-height: 0 !important;
-  margin: 0 !important;
+  max-height: none !important;
   padding: 0 !important;
+  margin: 0 !important;
   border: 0 !important;
-  border-radius: 24px !important;
+  border-radius: 36px !important;
   background: #ffffff !important;
-  aspect-ratio: auto !important;
+  aspect-ratio: 360 / 800 !important;
   object-fit: fill !important;
   object-position: center center !important;
   box-sizing: border-box !important;
+  transition: opacity 0.2s ease, transform 0.2s ease !important;
 }
 
 .savora-prototype-screen.is-changing img {
@@ -4417,18 +4436,30 @@ figcaption {
   transform: scale(0.985) !important;
 }
 
+/* Keep the prototype centered without allowing the frame
+   to shrink when the viewport becomes narrower. */
 @media (max-width: 720px) {
+  .savora-prototype-stage {
+    width: 100%;
+    overflow-x: auto;
+    justify-items: center;
+    padding-bottom: 8px;
+  }
+
   .savora-prototype-screen {
-    width: min(360px, 100%) !important;
+    flex: 0 0 360px !important;
+    width: 360px !important;
+    height: 800px !important;
+    min-width: 360px !important;
+    min-height: 800px !important;
     max-width: 360px !important;
-    aspect-ratio: 360 / 800 !important;
-    height: auto !important;
-    padding: 8px !important;
-    border-width: 8px !important;
-    border-radius: 32px !important;
+    max-height: 800px !important;
   }
 
   .savora-prototype-screen img {
-    border-radius: 21px !important;
+    width: 360px !important;
+    height: 800px !important;
+    min-width: 360px !important;
+    min-height: 800px !important;
   }
 }
