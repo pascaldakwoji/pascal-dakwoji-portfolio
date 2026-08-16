@@ -2763,22 +2763,57 @@ figcaption {
 
 .savora-prototype-stage {
   display: grid;
-  grid-template-columns: minmax(210px, 360px) 1fr;
+  grid-template-columns: 380px minmax(0, 1fr);
   gap: 28px;
   align-items: center;
+  justify-items: start;
+  min-width: 0;
 }
 
+/*
+  Savora source screenshots are all native 360 x 800 px.
+  The frame is 380 x 820 px: 10 px black border on every side.
+  The image itself therefore remains exactly 360 x 800 px.
+*/
 .savora-prototype-screen {
-  width: 100%;
+  display: block;
+  position: relative;
+  width: 380px;
+  height: 820px;
+  min-width: 380px;
+  min-height: 820px;
+  max-width: 380px;
+  max-height: 820px;
   padding: 10px;
+  margin: 0;
   border: 0;
   border-radius: 36px;
-  background: #111311;
+  background: #050505;
+  overflow: hidden;
+  box-sizing: border-box;
   cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
   box-shadow: 0 30px 90px rgba(18, 22, 30, 0.22);
 }
 
 .savora-prototype-screen img {
+  display: block;
+  width: 360px;
+  height: 800px;
+  min-width: 360px;
+  min-height: 800px;
+  max-width: 360px;
+  max-height: 800px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 24px;
+  background: #ffffff;
+  aspect-ratio: 360 / 800;
+  object-fit: fill;
+  object-position: center center;
+  box-sizing: border-box;
   transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
@@ -2788,6 +2823,7 @@ figcaption {
 }
 
 .savora-prototype-stage aside {
+  min-width: 0;
   padding: 28px;
   border-radius: 28px;
   background: #111311;
@@ -4165,6 +4201,19 @@ figcaption {
   .savora-prototype-stage aside {
     padding: 22px;
   }
+
+  .savora-prototype-stage {
+    grid-template-columns: 380px minmax(0, 1fr);
+  }
+
+  .savora-prototype-screen {
+    width: 380px;
+    height: 820px;
+    min-width: 380px;
+    min-height: 820px;
+    max-width: 380px;
+    max-height: 820px;
+  }
 }
 
 @media (max-width: 980px) {
@@ -4362,104 +4411,58 @@ figcaption {
     grid-template-columns: 1fr;
   }
 }
+
+
 /* =========================================================
-   SAVORA INTERACTIVE PROTOTYPE — DEFINITIVE SCREEN FRAME
-   Every Savora screenshot is a native 360 x 800 image.
-   The prototype frame is therefore fixed to exactly
-   360 x 800 CSS pixels. The black border is an inset
-   overlay so it never changes the image dimensions.
+   SAVORA INTERACTIVE PROTOTYPE — FINAL SINGLE SOURCE OF TRUTH
+   Native screenshots: 360 x 800 px
+   Frame: 380 x 820 px (10 px black border on all sides)
+   No image is allowed to determine the frame dimensions.
    ========================================================= */
 
-.savora-prototype-stage {
-  display: grid;
-  align-items: center;
-  justify-items: center;
-}
-
-.savora-prototype-screen {
-  display: block !important;
-  position: relative !important;
-  width: 360px !important;
-  height: 800px !important;
-  min-width: 360px !important;
-  min-height: 800px !important;
-  max-width: 360px !important;
-  max-height: 800px !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 36px !important;
-  background: #050505 !important;
-  overflow: hidden !important;
-  box-sizing: border-box !important;
-  cursor: pointer;
-  box-shadow:
-    inset 0 0 0 10px #050505,
-    0 30px 90px rgba(0, 0, 0, 0.42) !important;
-  appearance: none !important;
-  -webkit-appearance: none !important;
-}
-
-.savora-prototype-screen::after {
-  content: "" !important;
-  position: absolute !important;
-  inset: 0 !important;
-  z-index: 2 !important;
-  pointer-events: none !important;
-  border: 10px solid #050505 !important;
-  border-radius: 36px !important;
-  box-sizing: border-box !important;
+.savora-prototype-screen,
+.savora-prototype-screen:focus,
+.savora-prototype-screen:active {
+  width: 380px;
+  height: 820px;
+  min-width: 380px;
+  min-height: 820px;
+  max-width: 380px;
+  max-height: 820px;
+  padding: 10px;
+  border: 0;
+  outline: none;
+  background: #050505;
+  box-sizing: border-box;
 }
 
 .savora-prototype-screen img {
-  display: block !important;
-  width: 360px !important;
-  height: 800px !important;
-  min-width: 360px !important;
-  min-height: 800px !important;
-  max-width: none !important;
-  max-height: none !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 36px !important;
-  background: #ffffff !important;
-  aspect-ratio: 360 / 800 !important;
-  object-fit: fill !important;
-  object-position: center center !important;
-  box-sizing: border-box !important;
-  transition: opacity 0.2s ease, transform 0.2s ease !important;
+  width: 360px;
+  height: 800px;
+  min-width: 360px;
+  min-height: 800px;
+  max-width: 360px;
+  max-height: 800px;
+  object-fit: fill;
+  object-position: center center;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.savora-prototype-screen.is-changing img {
-  opacity: 0.35 !important;
-  transform: scale(0.985) !important;
-}
-
-/* Keep the prototype centered without allowing the frame
-   to shrink when the viewport becomes narrower. */
 @media (max-width: 720px) {
   .savora-prototype-stage {
     width: 100%;
+    grid-template-columns: 380px minmax(0, 1fr);
     overflow-x: auto;
-    justify-items: center;
-    padding-bottom: 8px;
+    overflow-y: visible;
+    justify-items: start;
+    padding: 4px 4px 18px;
+    box-sizing: border-box;
   }
 
   .savora-prototype-screen {
-    flex: 0 0 360px !important;
-    width: 360px !important;
-    height: 800px !important;
-    min-width: 360px !important;
-    min-height: 800px !important;
-    max-width: 360px !important;
-    max-height: 800px !important;
-  }
-
-  .savora-prototype-screen img {
-    width: 360px !important;
-    height: 800px !important;
-    min-width: 360px !important;
-    min-height: 800px !important;
+    flex: 0 0 380px;
   }
 }
