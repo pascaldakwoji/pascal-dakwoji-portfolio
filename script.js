@@ -118,11 +118,6 @@ if (savoraPrototype) {
       note: "User views the selected meal.",
     },
     {
-      title: "Add to Cart",
-      src: "savora/PLACE YOUR ORDER.png",
-      note: "Quantity is selected.",
-    },
-    {
       title: "Your Order",
       src: "savora/YOUR ORDER.png",
       note: "User reviews the order.",
