@@ -2770,21 +2770,32 @@ figcaption {
 
 .savora-prototype-screen {
   width: 100%;
+  aspect-ratio: 360 / 800;
   padding: 10px;
   border: 0;
   border-radius: 36px;
   background: #111311;
   cursor: pointer;
   box-shadow: 0 30px 90px rgba(18, 22, 30, 0.22);
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
 .savora-prototype-screen img {
+  display: block;
   width: 100%;
   height: 100%;
+  aspect-ratio: 360 / 800;
   object-fit: cover;
   object-position: top center;
-  display: block;
+  border-radius: 26px;
+  background: #ffffff;
   transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.savora-prototype-screen.is-changing img {
+  opacity: 0.35;
+  transform: scale(0.985);
 }
 
 .savora-prototype-screen.is-changing img {
