@@ -141,14 +141,9 @@ if (savoraPrototype) {
       note: "User selects payment method.",
     },
     {
-      title: "Order Confirmation",
-      src: "savora/CONFIRMATION PAGE.png",
-      note: "Show the actual confirmation UI.",
-    },
-    {
       title: "Order Tracking",
       src: "savora/ORDER TRACKING PAGE.png",
-      note: "Show tracking state.",
+      note: "Show the current order tracking state.",
     },
     {
       title: "Out for Delivery",
@@ -158,7 +153,7 @@ if (savoraPrototype) {
     {
       title: "Delivered",
       src: "savora/ORDER TRACKING PAGE 3.png",
-      note: "Show the final supplied delivery state.",
+      note: "Show the final delivered order state.",
     },
   ];
 
@@ -200,19 +195,9 @@ if (savoraPrototype) {
       count.textContent =
         `State ${String(savoraIndex + 1).padStart(2, "0")}`;
 
-      /*
-       * Order Confirmation is slightly smaller inside
-       * its original image canvas than the other screens.
-       * Enlarge only this screen so it visually matches
-       * the rest of the prototype.
-       */
-      if (state.title === "Order Confirmation") {
-        screen.style.transform = "scale(1.12)";
-        screen.style.transformOrigin = "top center";
-      } else {
-        screen.style.transform = "";
-        screen.style.transformOrigin = "";
-      }
+      // Keep every Savora screen at the same visual size.
+      screen.style.transform = "";
+      screen.style.transformOrigin = "";
 
       screenButton.classList.remove("is-changing");
     }, 140);
