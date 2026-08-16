@@ -104,57 +104,57 @@ if (savoraPrototype) {
   const savoraStates = [
     {
       title: "Home",
-      src: "assets/savora/HOME PAGE.png",
+      src: "savora/HOME PAGE.png",
       note: "User selects a meal/category.",
     },
     {
       title: "Meals",
-      src: "assets/savora/MENU PAGE.png",
+      src: "savora/MENU PAGE.png",
       note: "User browses available meals.",
     },
     {
       title: "Meal Details",
-      src: "assets/savora/PLACE YOUR ORDER.png",
+      src: "savora/PLACE YOUR ORDER.png",
       note: "User views the selected meal.",
     },
     {
       title: "Add to Cart",
-      src: "assets/savora/PLACE YOUR ORDER.png",
+      src: "savora/PLACE YOUR ORDER.png",
       note: "Quantity is selected.",
     },
     {
       title: "Your Order",
-      src: "assets/savora/YOUR ORDER.png",
+      src: "savora/YOUR ORDER.png",
       note: "User reviews the order.",
     },
     {
       title: "Delivery Address",
-      src: "assets/savora/DELIVERY ADDRESS.png",
+      src: "savora/DELIVERY ADDRESS.png",
       note: "User confirms delivery details.",
     },
     {
       title: "Payment",
-      src: "assets/savora/PAYMENT PAGE.png",
+      src: "savora/PAYMENT PAGE.png",
       note: "User selects payment method.",
     },
     {
       title: "Order Confirmation",
-      src: "assets/savora/CONFIRMATION PAGE.png",
+      src: "savora/CONFIRMATION PAGE.png",
       note: "Show the actual confirmation UI.",
     },
     {
       title: "Order Tracking",
-      src: "assets/savora/ORDER TRACKING PAGE.png",
+      src: "savora/ORDER TRACKING PAGE.png",
       note: "Show tracking state.",
     },
     {
       title: "Out for Delivery",
-      src: "assets/savora/ORDER TRACKING PAGE 2.png",
+      src: "savora/ORDER TRACKING PAGE 2.png",
       note: "Show the rider on the way tracking screen.",
     },
     {
       title: "Delivered",
-      src: "assets/savora/ORDER TRACKING PAGE 3.png",
+      src: "savora/ORDER TRACKING PAGE 3.png",
       note: "Show the final supplied delivery state.",
     },
   ];
