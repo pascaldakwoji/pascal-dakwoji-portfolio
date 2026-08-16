@@ -73,7 +73,9 @@ function setPrototypeStep(step) {
   });
 
   prototypeSteps.forEach((button) => {
-    const isActive = button.dataset.prototypeStep === String(Math.min(step, 3));
+    const isActive =
+      button.dataset.prototypeStep === String(Math.min(step, 3));
+
     button.classList.toggle("active", isActive);
   });
 }
@@ -86,8 +88,14 @@ prototypeSteps.forEach((button) => {
 
 document.querySelectorAll("[data-next-step]").forEach((button) => {
   button.addEventListener("click", () => {
-    const current = [...prototypeScreens].find((screen) => !screen.hidden);
-    const next = current ? Number(current.dataset.screen) + 1 : 0;
+    const current = [...prototypeScreens].find(
+      (screen) => !screen.hidden
+    );
+
+    const next = current
+      ? Number(current.dataset.screen) + 1
+      : 0;
+
     setPrototypeStep(Math.min(next, 3));
   });
 });
@@ -155,42 +163,93 @@ if (savoraPrototype) {
   ];
 
   let savoraIndex = 0;
-  const screen = savoraPrototype.querySelector("[data-savora-screen]");
-  const title = savoraPrototype.querySelector("[data-savora-title]");
-  const note = savoraPrototype.querySelector("[data-savora-note]");
-  const count = savoraPrototype.querySelector("[data-savora-count]");
-  const screenButton = savoraPrototype.querySelector(".savora-prototype-screen");
+
+  const screen =
+    savoraPrototype.querySelector("[data-savora-screen]");
+
+  const title =
+    savoraPrototype.querySelector("[data-savora-title]");
+
+  const note =
+    savoraPrototype.querySelector("[data-savora-note]");
+
+  const count =
+    savoraPrototype.querySelector("[data-savora-count]");
+
+  const screenButton =
+    savoraPrototype.querySelector(".savora-prototype-screen");
 
   function setSavoraState(index) {
-    savoraIndex = (index + savoraStates.length) % savoraStates.length;
+    savoraIndex =
+      (index + savoraStates.length) % savoraStates.length;
+
     const state = savoraStates[savoraIndex];
 
     screenButton.classList.add("is-changing");
+
     window.setTimeout(() => {
       screen.src = state.src;
-      screen.alt = `Savora prototype ${state.title} screen`;
+
+      screen.alt =
+        `Savora prototype ${state.title} screen`;
+
       title.textContent = state.title;
+
       note.textContent = state.note;
-      count.textContent = `State ${String(savoraIndex + 1).padStart(2, "0")}`;
+
+      count.textContent =
+        `State ${String(savoraIndex + 1).padStart(2, "0")}`;
+
+      /*
+       * Order Confirmation is slightly smaller inside
+       * its original image canvas than the other screens.
+       * Enlarge only this screen so it visually matches
+       * the rest of the prototype.
+       */
+      if (state.title === "Order Confirmation") {
+        screen.style.transform = "scale(1.12)";
+        screen.style.transformOrigin = "top center";
+      } else {
+        screen.style.transform = "";
+        screen.style.transformOrigin = "";
+      }
+
       screenButton.classList.remove("is-changing");
     }, 140);
   }
 
-  savoraPrototype.querySelectorAll("[data-savora-next]").forEach((button) => {
-    button.addEventListener("click", () => setSavoraState(savoraIndex + 1));
-  });
+  savoraPrototype
+    .querySelectorAll("[data-savora-next]")
+    .forEach((button) => {
+      button.addEventListener("click", () => {
+        setSavoraState(savoraIndex + 1);
+      });
+    });
 
-  savoraPrototype.querySelector("[data-savora-prev]").addEventListener("click", () => {
-    setSavoraState(savoraIndex - 1);
-  });
+  savoraPrototype
+    .querySelector("[data-savora-prev]")
+    .addEventListener("click", () => {
+      setSavoraState(savoraIndex - 1);
+    });
 
-  savoraPrototype.querySelector("[data-savora-restart]").addEventListener("click", () => {
-    setSavoraState(0);
-  });
+  savoraPrototype
+    .querySelector("[data-savora-restart]")
+    .addEventListener("click", () => {
+      setSavoraState(0);
+    });
 
   setSavoraState(0);
 }
 
-window.addEventListener("scroll", updateProgress, { passive: true });
-window.addEventListener("resize", updateProgress);
+window.addEventListener(
+  "scroll",
+  updateProgress,
+  { passive: true }
+);
+
+window.addEventListener(
+  "resize",
+  updateProgress
+);
+
 updateProgress();
